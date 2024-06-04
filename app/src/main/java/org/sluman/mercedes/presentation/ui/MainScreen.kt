@@ -43,8 +43,6 @@ import kotlinx.serialization.Serializable
 import org.sluman.mercedes.R
 import org.sluman.mercedes.presentation.UserDetailViewModel
 import org.sluman.mercedes.presentation.UserViewModel
-import org.sluman.mercedes.presentation.ui.theme.MercedesTheme
-
 
 @OptIn(ExperimentalSharedTransitionApi::class)
 @Composable

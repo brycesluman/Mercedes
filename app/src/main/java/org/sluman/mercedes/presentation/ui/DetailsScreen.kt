@@ -6,7 +6,6 @@ import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -30,7 +29,6 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import org.sluman.mercedes.R
 import org.sluman.mercedes.data.DetailUiState
-import org.sluman.mercedes.data.MainUiState
 
 @OptIn(ExperimentalSharedTransitionApi::class)
 @Composable

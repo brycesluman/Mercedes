@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.sluman.mercedes.data.DetailUiState
-import org.sluman.mercedes.data.MainUiState
 import org.sluman.mercedes.domain.UserRepository
 import javax.inject.Inject
 
