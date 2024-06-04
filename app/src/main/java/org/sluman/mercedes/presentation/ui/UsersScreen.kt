@@ -7,6 +7,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -91,7 +92,8 @@ fun UserGridItem(
                     .fillMaxSize()) {
                     Card(
                         modifier = Modifier
-                            .fillMaxSize(),
+                            .fillMaxSize()
+                            .aspectRatio(1f),
                         shape = RoundedCornerShape(5.dp)
 
                     ) {
