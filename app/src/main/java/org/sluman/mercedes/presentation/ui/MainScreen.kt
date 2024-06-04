@@ -1,13 +1,13 @@
 package org.sluman.mercedes.presentation.ui
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionLayout
-import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutVertically
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -29,7 +29,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -45,16 +44,11 @@ import org.sluman.mercedes.R
 import org.sluman.mercedes.presentation.UserDetailViewModel
 import org.sluman.mercedes.presentation.UserViewModel
 
-//enum class MainScreen(@StringRes val title: Int) {
-//    UserList(title = R.string.user_list),
-//    Detail(title = R.string.detail),
-//}
 
 @OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun MainAppScreen(
-    navController: NavHostController = rememberNavController(),
-    modifier: Modifier
+    navController: NavHostController = rememberNavController()
 ) {
     // Get current back stack entry
     val backStackEntry by navController.currentBackStackEntryAsState()
@@ -65,7 +59,8 @@ fun MainAppScreen(
     val topBarTitle = rememberSaveable { (mutableStateOf("")) }
     topBarState.value = "class $currentScreen" == UserList::class.toString()
 
-    Scaffold(topBar = {
+    Scaffold(
+        topBar = {
         AppBar(
             navigateUp = { navController.navigateUp() },
             topBarState = topBarState,
@@ -78,7 +73,21 @@ fun MainAppScreen(
                 startDestination = UserList,
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(innerPadding)
+                    .padding(innerPadding),
+                enterTransition = {
+                    fadeIn(
+                        animationSpec = tween(
+                            300, easing = LinearEasing
+                        )
+                    )
+                },
+                exitTransition = {
+                    fadeOut(
+                        animationSpec = tween(
+                            300, easing = LinearEasing
+                        )
+                    )
+                }
             ) {
                 composable<UserList> {
                     val userViewModel: UserViewModel = hiltViewModel()

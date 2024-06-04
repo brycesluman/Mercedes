@@ -26,10 +26,12 @@ import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale.Companion.Crop
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import org.sluman.mercedes.data.UiState
 import org.sluman.mercedes.data.UserEntity
 
@@ -76,29 +78,38 @@ fun UserGridItem(
     Row(
         modifier = Modifier.padding(4.dp)
     ) {
-        with(sharedTransitionScope) {
-            Card(
-                colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.surface,
-                ),
-                modifier = Modifier
-                    .clickable { onItemClicked(item.login) },
-                shape = RoundedCornerShape(5.dp),
-                elevation = CardDefaults.cardElevation(
-                    defaultElevation = 2.dp
-                )
-            ) {
-                Column(modifier = Modifier.padding(2.dp)
-                    .fillMaxSize()) {
-                    Card(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .aspectRatio(1f),
-                        shape = RoundedCornerShape(5.dp)
 
-                    ) {
+        Card(
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surface,
+            ),
+            modifier = Modifier
+                .clickable { onItemClicked(item.login) },
+            shape = RoundedCornerShape(5.dp),
+            elevation = CardDefaults.cardElevation(
+                defaultElevation = 2.dp
+            )
+        ) {
+            Column(
+                modifier = Modifier
+                    .padding(2.dp)
+                    .fillMaxSize()
+            ) {
+                Card(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .aspectRatio(1f),
+                    shape = RoundedCornerShape(5.dp)
+
+                ) {
+                    with(sharedTransitionScope) {
                         AsyncImage(
-                            model = item.avatarUrl,
+                            model = ImageRequest.Builder(LocalContext.current)
+                                .data(item.avatarUrl)
+                                .crossfade(true)
+                                .placeholderMemoryCacheKey("image-${item.login}")
+                                .memoryCacheKey("image-${item.login}")
+                                .build(),
                             contentDescription = "image",
                             contentScale = Crop,
                             clipToBounds = true,
@@ -106,20 +117,22 @@ fun UserGridItem(
                                 .sharedElement(
                                     sharedTransitionScope.rememberSharedContentState(key = "image-${item.login}"),
                                     animatedVisibilityScope = animatedContentScope
-                                ).fillMaxSize()
+                                )
+                                .fillMaxSize()
                         )
                     }
-                    Text(
-                        text = item.login,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(4.dp, 2.dp),
-                        fontWeight = FontWeight.SemiBold,
-                        fontSize = 12.sp
-                    )
                 }
+                Text(
+                    text = item.login,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(4.dp, 2.dp),
+                    fontWeight = FontWeight.SemiBold,
+                    fontSize = 12.sp
+                )
             }
         }
     }
 }
+
 
