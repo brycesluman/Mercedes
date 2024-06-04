@@ -7,7 +7,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import org.sluman.mercedes.data.UiState
+import org.sluman.mercedes.data.DetailUiState
+import org.sluman.mercedes.data.MainUiState
 import org.sluman.mercedes.domain.UserRepository
 import javax.inject.Inject
 
@@ -15,8 +16,8 @@ import javax.inject.Inject
 class UserDetailViewModel @Inject constructor(
     private val repository: UserRepository
 ): ViewModel(){
-    private val _uiState = MutableStateFlow(UiState())
-    val uiState: StateFlow<UiState> = _uiState.asStateFlow()
+    private val _uiState = MutableStateFlow(DetailUiState())
+    val uiState: StateFlow<DetailUiState> = _uiState.asStateFlow()
 
     fun getUserDetails(userId: String) {
         _uiState.value = uiState.value.copy(
@@ -33,8 +34,10 @@ class UserDetailViewModel @Inject constructor(
                     )
                 }
             } catch (e: Exception) {
+                println("error: $e")
                 _uiState.value = uiState.value.copy(
                     isError = true,
+                    errorMessage = e.toString(),
                     isLoading = false,
                 )
             }

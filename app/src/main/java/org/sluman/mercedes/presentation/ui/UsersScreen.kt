@@ -27,12 +27,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale.Companion.Crop
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import org.sluman.mercedes.data.UiState
+import org.sluman.mercedes.R
+import org.sluman.mercedes.data.MainUiState
 import org.sluman.mercedes.data.UserEntity
 
 @OptIn(ExperimentalSharedTransitionApi::class)
@@ -40,7 +42,7 @@ import org.sluman.mercedes.data.UserEntity
 fun UsersScreen(
     modifier: Modifier,
     onItemClicked: (itemId: String) -> Unit = {},
-    state: State<UiState>,
+    state: State<MainUiState>,
     sharedTransitionScope: SharedTransitionScope,
     animatedContentScope: AnimatedContentScope
 ) {
@@ -62,6 +64,10 @@ fun UsersScreen(
                 color = MaterialTheme.colorScheme.secondary,
                 trackColor = MaterialTheme.colorScheme.surfaceVariant,
             )
+        }
+        if (state.value.isError) {
+            state.value.errorMessage?.let { ErrorMessage(message = stringResource(R.string.error_offline), modifier = Modifier
+                .align(Alignment.Center),) }
         }
     }
 }

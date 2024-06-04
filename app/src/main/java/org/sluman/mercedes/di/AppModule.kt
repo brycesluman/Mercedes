@@ -1,4 +1,4 @@
-package org.sluman.mercedes
+package org.sluman.mercedes.di
 
 import android.content.Context
 import dagger.Module

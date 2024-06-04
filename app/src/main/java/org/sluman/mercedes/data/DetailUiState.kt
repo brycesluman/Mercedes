@@ -1,9 +1,8 @@
 package org.sluman.mercedes.data
 
-
-data class UiState(
+data class DetailUiState(
     val isError: Boolean = false,
+    val errorMessage: String? = "",
     val isLoading: Boolean = false,
-    val users: List<UserEntity>? = null,
     val userDetail: UserDetailEntity? = null
 )

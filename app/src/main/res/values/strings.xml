@@ -3,4 +3,14 @@
     <string name="user_list">Users</string>
     <string name="detail">Detail</string>
     <string name="back_button">Back</string>
+    <string name="error_offline">An error occurred. Make sure your device is online and try again.</string>
+
+    <string name="details_name">Name</string>
+    <string name="details_location">Location</string>
+    <string name="details_company">Company</string>
+    <string name="details_blog">Blog</string>
+    <string name="details_public_repository">Public Repository</string>
+    <string name="details_public_gists">Public Gists</string>
+    <string name="details_followers">Followers</string>
+    <string name="details_following">Following</string>
 </resources>

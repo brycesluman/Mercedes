@@ -43,6 +43,7 @@ import kotlinx.serialization.Serializable
 import org.sluman.mercedes.R
 import org.sluman.mercedes.presentation.UserDetailViewModel
 import org.sluman.mercedes.presentation.UserViewModel
+import org.sluman.mercedes.presentation.ui.theme.MercedesTheme
 
 
 @OptIn(ExperimentalSharedTransitionApi::class)
@@ -166,6 +167,13 @@ fun AppBar(
                 }
             }
         }
+    )
+}
+@Composable
+fun ErrorMessage(message: String, modifier: Modifier) {
+    Text(text = message,
+        color = MaterialTheme.colorScheme.error,
+        modifier = modifier.padding(16.dp)
     )
 }
 
