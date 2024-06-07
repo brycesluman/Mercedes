@@ -35,7 +35,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import org.sluman.mercedes.R
 import org.sluman.mercedes.data.MainUiState
-import org.sluman.mercedes.data.UserEntity
+import org.sluman.mercedes.domain.UserDomainEntity
 
 @OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
@@ -75,7 +75,7 @@ fun UsersScreen(
 @OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun UserGridItem(
-    item: UserEntity,
+    item: UserDomainEntity,
     onItemClicked: (item: String) -> Unit,
     sharedTransitionScope: SharedTransitionScope,
     animatedContentScope: AnimatedContentScope

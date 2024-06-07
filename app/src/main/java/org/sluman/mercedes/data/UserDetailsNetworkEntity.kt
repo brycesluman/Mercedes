@@ -2,7 +2,7 @@ package org.sluman.mercedes.data
 
 import com.google.gson.annotations.SerializedName
 
-data class UserDetailEntity(
+data class UserDetailsNetworkEntity(
     @SerializedName("login")
     var login: String,
     @SerializedName("id")
