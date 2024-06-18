@@ -8,12 +8,12 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.sluman.mercedes.data.MainUiState
-import org.sluman.mercedes.domain.UserRepository
+import org.sluman.mercedes.domain.UserUseCases
 import javax.inject.Inject
 
 @HiltViewModel
 class UserViewModel @Inject constructor(
-    private val repository: UserRepository
+    private val useCases: UserUseCases
 ): ViewModel() {
     private val _uiState = MutableStateFlow(MainUiState())
     val uiState: StateFlow<MainUiState> = _uiState.asStateFlow()
@@ -29,7 +29,7 @@ class UserViewModel @Inject constructor(
         )
         viewModelScope.launch {
             try {
-                repository.getUsers().let { users ->
+                useCases.getUsersUseCase().let { users ->
                     _uiState.value = uiState.value.copy(
                         isLoading = false,
                         isError = false,

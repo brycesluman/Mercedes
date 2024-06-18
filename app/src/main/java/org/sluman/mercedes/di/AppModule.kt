@@ -8,7 +8,10 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import org.sluman.mercedes.data.network.ApiClient
 import org.sluman.mercedes.data.UserRepositoryImpl
+import org.sluman.mercedes.domain.GetUserDetailsUseCase
+import org.sluman.mercedes.domain.GetUsersUseCase
 import org.sluman.mercedes.domain.UserRepository
+import org.sluman.mercedes.domain.UserUseCases
 import javax.inject.Singleton
 
 @Module
@@ -25,5 +28,14 @@ object AppModule {
     @Singleton
     fun provideUserRepository(@ApplicationContext appContext: Context): UserRepository {
         return UserRepositoryImpl(ApiClient(appContext))
+    }
+
+    @Provides
+    @Singleton
+    fun provideUserUseCases(userRepository: UserRepository): UserUseCases {
+        return UserUseCases(
+            getUsersUseCase = GetUsersUseCase(userRepository),
+            getUserDetailUseCase = GetUserDetailsUseCase(userRepository)
+        )
     }
 }
