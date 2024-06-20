@@ -62,6 +62,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -90,6 +91,17 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.kotlin.reflect)
     implementation(libs.okhttpprofiler)
+
+    // Robolectric environment
+    testImplementation("androidx.test:core-ktx:1.5.0")
+    // Mockito framework
+    testImplementation("org.mockito:mockito-core:5.11.0" )
+    // mockito-kotlin
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.1.0")
+    // Mockk framework
+    testImplementation("io.mockk:mockk:1.13.10")
+
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.9")
 }
 kapt {
     correctErrorTypes = true
