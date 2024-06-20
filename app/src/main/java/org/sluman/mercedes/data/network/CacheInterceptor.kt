@@ -46,6 +46,7 @@ class ForceCacheInterceptor(applicationContext: Context) : Interceptor {
                         hasTransport(NetworkCapabilities.TRANSPORT_VPN) ||
                         hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
                         hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)) -> true
+
         else -> false
     }
 }

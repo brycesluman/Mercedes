@@ -66,8 +66,13 @@ fun UsersScreen(
             )
         }
         if (state.value.isError) {
-            state.value.errorMessage?.let { ErrorMessage(message = stringResource(R.string.error_offline), modifier = Modifier
-                .align(Alignment.Center),) }
+            state.value.errorMessage?.let {
+                ErrorMessage(
+                    message = stringResource(R.string.error_offline),
+                    modifier = Modifier
+                        .align(Alignment.Center),
+                )
+            }
         }
     }
 }

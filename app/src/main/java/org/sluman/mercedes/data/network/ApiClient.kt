@@ -12,10 +12,17 @@ import java.io.File
 class RetrofitClient(applicationContext: Context) {
     val retrofit: Retrofit by lazy {
         val builder = OkHttpClient.Builder()
-            .cache(Cache(File(applicationContext.cacheDir, "http-cache"), 10L * 1024L * 1024L)) // 10 MiB
+            .cache(
+                Cache(
+                    File(applicationContext.cacheDir, "http-cache"),
+                    10L * 1024L * 1024L
+                )
+            ) // 10 MiB
             .addNetworkInterceptor(CacheInterceptor())
             .addInterceptor(ForceCacheInterceptor(applicationContext))
-        if (BuildConfig.DEBUG) { builder.addInterceptor(OkHttpProfilerInterceptor()) }
+        if (BuildConfig.DEBUG) {
+            builder.addInterceptor(OkHttpProfilerInterceptor())
+        }
         val client = builder.build()
         Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -23,6 +30,7 @@ class RetrofitClient(applicationContext: Context) {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
+
     companion object {
         private const val BASE_URL = "https://api.github.com/"
     }

@@ -40,9 +40,11 @@ fun DetailsScreen(
     animatedContentScope: AnimatedContentScope
 ) {
     with(sharedTransitionScope) {
-        Column(modifier = modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())) {
+        Column(
+            modifier = modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+        ) {
             Box() {
                 Column() {
                     AsyncImage(
@@ -121,16 +123,20 @@ fun DetailsScreen(
 
 @Composable
 fun DetailRow(key: String, value: String) {
-    Row(modifier = Modifier
-        .fillMaxWidth()
-        .padding(top = 4.dp, bottom = 4.dp)) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 4.dp, bottom = 4.dp)
+    ) {
         Text(
             text = key,
             fontWeight = FontWeight.SemiBold,
             modifier = Modifier.weight(1f)
         )
-        Text(text = value,
-            modifier = Modifier.weight(1f))
+        Text(
+            text = value,
+            modifier = Modifier.weight(1f)
+        )
     }
     Divider(thickness = .5.dp)
 }

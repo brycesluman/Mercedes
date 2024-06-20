@@ -60,12 +60,12 @@ fun MainAppScreen(
 
     Scaffold(
         topBar = {
-        AppBar(
-            navigateUp = { navController.navigateUp() },
-            topBarState = topBarState,
-            topBarTitle = topBarTitle
-        )
-    }) { innerPadding ->
+            AppBar(
+                navigateUp = { navController.navigateUp() },
+                topBarState = topBarState,
+                topBarTitle = topBarTitle
+            )
+        }) { innerPadding ->
         SharedTransitionLayout {
             NavHost(
                 navController = navController,
@@ -167,9 +167,11 @@ fun AppBar(
         }
     )
 }
+
 @Composable
 fun ErrorMessage(message: String, modifier: Modifier) {
-    Text(text = message,
+    Text(
+        text = message,
         color = MaterialTheme.colorScheme.error,
         modifier = modifier.padding(16.dp)
     )

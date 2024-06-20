@@ -8,8 +8,8 @@ import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
     private val apiClient: ApiClient
-): UserRepository {
-    override suspend fun getUsers(): List<UserDomainEntity>  {
+) : UserRepository {
+    override suspend fun getUsers(): List<UserDomainEntity> {
         return apiClient.apiService.getUsers().map { networkEntity ->
             networkEntity.toDomain()
         }
